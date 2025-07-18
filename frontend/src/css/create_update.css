@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto_Medium';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+.content {
+    padding: 100px 60px 60px 60px;
+    font-family: Roboto, sans-serif;
+}
+
+.content h1 {
+    font-family: Roboto_Medium, sans-serif;
+}
+
+.content form {
+    max-width: 397px;
+}
+
+.content form input::placeholder {
+    color: #6c757d;
+}

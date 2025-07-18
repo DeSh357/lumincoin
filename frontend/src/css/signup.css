@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto_Medium';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+
+html, body {
+    height: 100%;
+}
+
+.signup {
+    max-width: 397px;
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+}
+
+.signup .logo {
+    margin-bottom: 60px;
+}
+
+.signup h3 {
+    font-family: Roboto_Medium, sans-serif;
+}
+
+.signup .input-group-text {
+    width: 38px;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.signup .input-group-text {
+    width: 38px;
+    padding: 12px;
+}
+
+.signup input::placeholder {
+    font-size: 15px;
+}

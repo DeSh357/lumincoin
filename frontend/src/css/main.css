@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto_Medium';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Roboto_Medium, sans-serif;
+    min-height: 100%;
+}
+
+.page {
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.main {
+    padding: 100px 94px 133px 60px;
+}
+
+.main h1 {
+    margin-bottom: 60px;
+}
+
+.main .nav-pills {
+    gap: 20px;
+    margin-bottom: 95px;
+}
+
+.main .nav-pills li input {
+    outline: none;
+    position: relative;
+    text-decoration-skip-ink: none;
+}
+
+.main .charts .vr {
+    position: relative;
+    top: 50px;
+}
+

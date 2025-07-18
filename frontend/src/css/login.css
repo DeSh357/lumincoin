@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto_Medium';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+
+html, body {
+    height: 100%;
+}
+
+.login {
+    max-width: 397px;
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+}
+
+.login .logo {
+    margin-bottom: 60px;
+}
+
+.login h3 {
+    font-family: Roboto_Medium, sans-serif;
+}
+
+.login .input-group-text {
+    width: 38px;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.login .input-group-text {
+    width: 38px;
+    padding: 12px;
+}
+
+.login input::placeholder {
+    font-size: 15px;
+}
+
+.login .form-check-input {
+    width: 13px;
+    height: 13px;
+}

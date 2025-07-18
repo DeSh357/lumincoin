@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto_Medium';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Roboto_Medium, sans-serif;
+    min-height: 100%;
+}
+
+.page {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main {
+    padding: 100px 60px 60px 60px;
+    gap: 40px;
+}
+
+
+.main .nav-pills {
+    gap: 20px;
+}
+
+.main .nav-pills li input {
+    outline: none;
+    position: relative;
+    text-decoration-skip-ink: none;
+}
+
+.main table td {
+    font-family: Roboto, sans-serif;
+    font-weight: unset;
+}
