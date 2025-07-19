@@ -8,27 +8,33 @@
     src: url('../fonts/Roboto-Medium.ttf');
 }
 
-.incomes {
+.list {
     padding: 100px 65px 60px 60px;
     font-family: Roboto_Medium, sans-serif;
 }
 
-.incomes h1 {
+.list h1 {
     margin-bottom: 40px;
 }
 
-.incomes .card {
+.list .card {
     height: 121px;
 }
 
-.incomes .card h3 {
+.list .card h3 {
     color: #290661;
 }
 
-.incomes .card a svg {
+.list .card a svg {
     fill: #ced4da
 }
 
-.incomes .card a:hover svg {
+.list .card a:hover svg {
     fill: #adb5bd
+}
+
+@media screen and (max-width: 1024px) {
+    .list {
+        padding: 60px 40px 60px 40px;
+    }
 }
