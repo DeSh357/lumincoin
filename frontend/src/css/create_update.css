@@ -24,3 +24,23 @@
 .content form input::placeholder {
     color: #6c757d;
 }
+
+input[type="date"]::-webkit-datetime-edit {
+    color: #6c757d;
+}
+
+@media screen and (max-width: 1024px){
+    .content {
+        padding: 60px 40px 60px 40px;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .content {
+        padding: 40px 20px;
+    }
+
+    .content h1 {
+        font-size: 22px;
+    }
+}

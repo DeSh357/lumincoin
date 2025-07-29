@@ -37,4 +37,21 @@
     .list {
         padding: 60px 40px 60px 40px;
     }
+
+    .list .card {
+        height: 110px;
+    }
+
+    .list .card-actions {
+        .btn {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .list {
+        padding: 40px 20px;
+    }
 }

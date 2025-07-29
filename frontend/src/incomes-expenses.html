@@ -12,8 +12,8 @@
 <body>
 <div class="page d-flex flex-md-row flex-column">
     <div class="sidebar px-2 py-1 p-md-0 d-flex flex-md-column flex-row justify-content-between align-items-center align-items-md-baseline bg-white border-2 border-end">
-        <a href="/" class="d-flex flex-grow-1 flex-md-grow-0 align-items-center">
-            <div class="logo w-100">
+        <a href="main.html" class="d-flex logo-nav flex-grow-1 flex-md-grow-0 align-items-center">
+            <div class="logo">
                 <svg width="98" height="40" viewBox="0 0 171 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.7585 57V48.2727H23.5369V49.794H19.6037V51.8736H23.1534V53.3949H19.6037V57H17.7585ZM41.0232 48.2727V57H39.1781V48.2727H41.0232ZM64.2411 48.2727V57H62.6473L58.8504 51.5071H58.7865V57H56.9413V48.2727H58.5607L62.3277 53.7614H62.4044V48.2727H64.2411ZM81.6698 57H79.6925L82.7053 48.2727H85.0832L88.0917 57H86.1144L83.9283 50.267H83.8602L81.6698 57ZM81.5462 53.5696H86.2167V55.0099H81.5462V53.5696ZM110.842 48.2727V57H109.248L105.451 51.5071H105.387V57H103.542V48.2727H105.161L108.928 53.7614H109.005V48.2727H110.842ZM134.467 51.3281H132.6C132.566 51.0866 132.496 50.8722 132.391 50.6847C132.286 50.4943 132.151 50.3324 131.987 50.1989C131.822 50.0653 131.631 49.9631 131.415 49.892C131.202 49.821 130.971 49.7855 130.721 49.7855C130.269 49.7855 129.876 49.8977 129.54 50.1222C129.205 50.3437 128.945 50.6676 128.761 51.0938C128.576 51.517 128.484 52.0312 128.484 52.6364C128.484 53.2585 128.576 53.7812 128.761 54.2045C128.948 54.6278 129.21 54.9474 129.545 55.1634C129.88 55.3793 130.268 55.4872 130.708 55.4872C130.955 55.4872 131.184 55.4545 131.394 55.3892C131.607 55.3239 131.796 55.2287 131.961 55.1037C132.126 54.9759 132.262 54.821 132.37 54.6392C132.481 54.4574 132.558 54.25 132.6 54.017L134.467 54.0256C134.418 54.4261 134.298 54.8125 134.104 55.1847C133.914 55.554 133.657 55.8849 133.333 56.1776C133.012 56.4673 132.629 56.6974 132.183 56.8679C131.739 57.0355 131.238 57.1193 130.678 57.1193C129.9 57.1193 129.204 56.9432 128.59 56.5909C127.979 56.2386 127.496 55.7287 127.141 55.0611C126.789 54.3935 126.613 53.5852 126.613 52.6364C126.613 51.6847 126.792 50.875 127.15 50.2074C127.508 49.5398 127.994 49.0312 128.607 48.6818C129.221 48.3295 129.911 48.1534 130.678 48.1534C131.184 48.1534 131.653 48.2244 132.085 48.3665C132.519 48.5085 132.904 48.7159 133.239 48.9886C133.575 49.2585 133.847 49.5895 134.058 49.9815C134.271 50.3736 134.407 50.8224 134.467 51.3281ZM150.19 57V48.2727H156.07V49.794H152.035V51.8736H155.768V53.3949H152.035V55.4787H156.087V57H150.19Z"
                           fill="#052C65"/>
@@ -46,12 +46,12 @@
                 </a>
             </li>
             <li class="nav-item d-md-none">
-                <a href="incomes-expenses.html" class="nav-link d-flex align-items-center gap-2">
+                <a href="incomes.html" class="nav-link d-flex align-items-center gap-2">
                     Доходы
                 </a>
             </li>
             <li class="nav-item d-md-none">
-                <a href="incomes-expenses.html" class="nav-link d-flex align-items-center gap-2">
+                <a href="expenses.html" class="nav-link d-flex align-items-center gap-2">
                     Расходы
                 </a>
             </li>
@@ -79,14 +79,18 @@
                 id="userBalance">500</span>$</span>
         </div>
         <div class="dropdown d-sm-none">
-            <a class="btn btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            <a class="btn btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
                 </svg>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item text-primary-emphasis" href="main.html">Главная</a></li>
-                <li><a class="dropdown-item text-primary-emphasis" href="incomes-expenses.html">Доходы & Расходы</a></li>
+                <li><a class="dropdown-item text-primary-emphasis" href="incomes-expenses.html">Доходы & Расходы</a>
+                </li>
                 <li><a class="dropdown-item text-primary-emphasis" href="incomes.html">Доходы</a></li>
                 <li><a class="dropdown-item text-primary-emphasis" href="expenses.html">Расходы</a></li>
             </ul>
@@ -103,104 +107,125 @@
         </div>
     </div>
 
-    <div class="main w-100 d-flex flex-column">
+    <div class="main w-100 d-flex flex-column justify-content-start">
         <h1 class="text-primary-emphasis">Доходы и расходы</h1>
         <div class="d-flex gap-2 actions">
             <a href="create.html" type="button" class="btn btn-success">Создать доход</a>
             <a href="create.html" type="button" class="btn btn-danger">Создать расход</a>
         </div>
         <ul class="nav nav-pills align-items-center">
-            <li class="nav-item "><a href="#" style="width: 100px"
-                                    class="nav-link text-center active bg-secondary" aria-current="page">Сегодня</a>
+            <li class="nav-item "><a href="#"
+                                     class="nav-link text-center active bg-secondary" aria-current="page">Сегодня</a>
             </li>
-            <li class="nav-item"><a href="#" style="width: 100px"
+            <li class="nav-item"><a href="#"
                                     class="nav-link border text-center border-secondary text-secondary">Неделя</a>
             </li>
-            <li class="nav-item"><a href="#" style="width: 100px"
+            <li class="nav-item"><a href="#"
                                     class="nav-link border text-center border-secondary text-secondary">Месяц</a>
             </li>
-            <li class="nav-item"><a href="#" style="width: 100px"
+            <li class="nav-item"><a href="#"
                                     class="nav-link border text-center border-secondary text-secondary">Год</a>
             </li>
-            <li class="nav-item"><a href="#" style="width: 100px"
+            <li class="nav-item"><a href="#"
                                     class="nav-link pe-0 ps-0 border text-center border-secondary text-secondary">Все</a>
             </li>
-            <li class="nav-item"><a href="#" style="width: 100px"
+            <li class="nav-item"><a href="#"
                                     class="nav-link border text-center border-secondary text-secondary">Интервал</a>
             </li>
             <li class="d-flex gap-3">
                 с
-                <input class="border-0 text-decoration-underline text-secondary" type="text" style="width: 52px" value="" placeholder="Дата">
+                <input class="border-0 text-decoration-underline text-secondary" type="date" style="width: 52px"
+                       value="" placeholder="Дата">
                 по
-                <input class="border-0 text-decoration-underline text-secondary" type="text" style="width: 52px" value="" placeholder="Дата">
+                <input class="border-0 text-decoration-underline text-secondary" type="date" style="width: 52px"
+                       value="" placeholder="Дата">
             </li>
 
         </ul>
-        <table class="table text-center">
-            <thead>
-            <tr>
-                <th class="text-primary-emphasis" scope="col">№ операции</th>
-                <th class="text-primary-emphasis" scope="col">Тип</th>
-                <th class="text-primary-emphasis" scope="col">Категория</th>
-                <th class="text-primary-emphasis" scope="col">Сумма</th>
-                <th class="text-primary-emphasis" scope="col">Дата</th>
-                <th class="text-primary-emphasis" scope="col">Комментарий</th>
-                <th class="text-primary-emphasis" scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th class="text-center" scope="row">1</th>
-                <td class="text-success">доход</td>
-                <td>зарплата</td>
-                <td>500$</td>
-                <td>11.09.2022</td>
-                <td></td>
-                <td class="px-0">
-                    <div class="d-flex gap-2 justify-content-end">
-                        <a href="#" data-bs-target="#modal" data-bs-toggle="modal">
-                            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.5 5.5C4.77614 5.5 5 5.72386 5 6V12C5 12.2761 4.77614 12.5 4.5 12.5C4.22386 12.5 4 12.2761 4 12V6C4 5.72386 4.22386 5.5 4.5 5.5Z" fill="black"/>
-                                <path d="M7 5.5C7.27614 5.5 7.5 5.72386 7.5 6V12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12V6C6.5 5.72386 6.72386 5.5 7 5.5Z" fill="black"/>
-                                <path d="M10 6C10 5.72386 9.77614 5.5 9.5 5.5C9.22386 5.5 9 5.72386 9 6V12C9 12.2761 9.22386 12.5 9.5 12.5C9.77614 12.5 10 12.2761 10 12V6Z" fill="black"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5 3C13.5 3.55228 13.0523 4 12.5 4H12V13C12 14.1046 11.1046 15 10 15H4C2.89543 15 2 14.1046 2 13V4H1.5C0.947715 4 0.5 3.55228 0.5 3V2C0.5 1.44772 0.947715 1 1.5 1H5C5 0.447715 5.44772 0 6 0H8C8.55229 0 9 0.447715 9 1H12.5C13.0523 1 13.5 1.44772 13.5 2V3ZM3.11803 4L3 4.05902V13C3 13.5523 3.44772 14 4 14H10C10.5523 14 11 13.5523 11 13V4.05902L10.882 4H3.11803ZM1.5 3V2H12.5V3H1.5Z" fill="black"/>
-                            </svg>
-                        </a>
-                        <a href="update.html">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.1465 0.146447C12.3417 -0.0488155 12.6583 -0.0488155 12.8536 0.146447L15.8536 3.14645C16.0488 3.34171 16.0488 3.65829 15.8536 3.85355L5.85357 13.8536C5.80569 13.9014 5.74858 13.9391 5.68571 13.9642L0.68571 15.9642C0.500001 16.0385 0.287892 15.995 0.146461 15.8536C0.00502989 15.7121 -0.0385071 15.5 0.0357762 15.3143L2.03578 10.3143C2.06092 10.2514 2.09858 10.1943 2.14646 10.1464L12.1465 0.146447ZM11.2071 2.5L13.5 4.79289L14.7929 3.5L12.5 1.20711L11.2071 2.5ZM12.7929 5.5L10.5 3.20711L4.00001 9.70711V10H4.50001C4.77616 10 5.00001 10.2239 5.00001 10.5V11H5.50001C5.77616 11 6.00001 11.2239 6.00001 11.5V12H6.29291L12.7929 5.5ZM3.03167 10.6755L2.92614 10.781L1.39754 14.6025L5.21903 13.0739L5.32456 12.9683C5.13496 12.8973 5.00001 12.7144 5.00001 12.5V12H4.50001C4.22387 12 4.00001 11.7761 4.00001 11.5V11H3.50001C3.28561 11 3.10272 10.865 3.03167 10.6755Z" fill="black"/>
-                            </svg>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td class="text-danger">расход</td>
-                <td>жильё</td>
-                <td>2 500$</td>
-                <td>12.09.2022</td>
-                <td></td>
-                <td class="px-0">
-                    <div class="d-flex gap-2 justify-content-end">
-                        <a href="#" data-bs-target="#modal" data-bs-toggle="modal">
-                            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.5 5.5C4.77614 5.5 5 5.72386 5 6V12C5 12.2761 4.77614 12.5 4.5 12.5C4.22386 12.5 4 12.2761 4 12V6C4 5.72386 4.22386 5.5 4.5 5.5Z" fill="black"/>
-                                <path d="M7 5.5C7.27614 5.5 7.5 5.72386 7.5 6V12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12V6C6.5 5.72386 6.72386 5.5 7 5.5Z" fill="black"/>
-                                <path d="M10 6C10 5.72386 9.77614 5.5 9.5 5.5C9.22386 5.5 9 5.72386 9 6V12C9 12.2761 9.22386 12.5 9.5 12.5C9.77614 12.5 10 12.2761 10 12V6Z" fill="black"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5 3C13.5 3.55228 13.0523 4 12.5 4H12V13C12 14.1046 11.1046 15 10 15H4C2.89543 15 2 14.1046 2 13V4H1.5C0.947715 4 0.5 3.55228 0.5 3V2C0.5 1.44772 0.947715 1 1.5 1H5C5 0.447715 5.44772 0 6 0H8C8.55229 0 9 0.447715 9 1H12.5C13.0523 1 13.5 1.44772 13.5 2V3ZM3.11803 4L3 4.05902V13C3 13.5523 3.44772 14 4 14H10C10.5523 14 11 13.5523 11 13V4.05902L10.882 4H3.11803ZM1.5 3V2H12.5V3H1.5Z" fill="black"/>
-                            </svg>
-                        </a>
-                        <a href="update.html">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.1465 0.146447C12.3417 -0.0488155 12.6583 -0.0488155 12.8536 0.146447L15.8536 3.14645C16.0488 3.34171 16.0488 3.65829 15.8536 3.85355L5.85357 13.8536C5.80569 13.9014 5.74858 13.9391 5.68571 13.9642L0.68571 15.9642C0.500001 16.0385 0.287892 15.995 0.146461 15.8536C0.00502989 15.7121 -0.0385071 15.5 0.0357762 15.3143L2.03578 10.3143C2.06092 10.2514 2.09858 10.1943 2.14646 10.1464L12.1465 0.146447ZM11.2071 2.5L13.5 4.79289L14.7929 3.5L12.5 1.20711L11.2071 2.5ZM12.7929 5.5L10.5 3.20711L4.00001 9.70711V10H4.50001C4.77616 10 5.00001 10.2239 5.00001 10.5V11H5.50001C5.77616 11 6.00001 11.2239 6.00001 11.5V12H6.29291L12.7929 5.5ZM3.03167 10.6755L2.92614 10.781L1.39754 14.6025L5.21903 13.0739L5.32456 12.9683C5.13496 12.8973 5.00001 12.7144 5.00001 12.5V12H4.50001C4.22387 12 4.00001 11.7761 4.00001 11.5V11H3.50001C3.28561 11 3.10272 10.865 3.03167 10.6755Z" fill="black"/>
-                            </svg>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead>
+                <tr>
+                    <th class="text-primary-emphasis" scope="col">№ операции</th>
+                    <th class="text-primary-emphasis" scope="col">Тип</th>
+                    <th class="text-primary-emphasis" scope="col">Категория</th>
+                    <th class="text-primary-emphasis" scope="col">Сумма</th>
+                    <th class="text-primary-emphasis" scope="col">Дата</th>
+                    <th class="text-primary-emphasis" scope="col">Комментарий</th>
+                    <th class="text-primary-emphasis" scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th class="text-center" scope="row">1</th>
+                    <td class="text-success">доход</td>
+                    <td>зарплата</td>
+                    <td>500$</td>
+                    <td>11.09.2022</td>
+                    <td></td>
+                    <td class="px-0">
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a href="#" data-bs-target="#modal" data-bs-toggle="modal">
+                                <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.5 5.5C4.77614 5.5 5 5.72386 5 6V12C5 12.2761 4.77614 12.5 4.5 12.5C4.22386 12.5 4 12.2761 4 12V6C4 5.72386 4.22386 5.5 4.5 5.5Z"
+                                          fill="black"/>
+                                    <path d="M7 5.5C7.27614 5.5 7.5 5.72386 7.5 6V12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12V6C6.5 5.72386 6.72386 5.5 7 5.5Z"
+                                          fill="black"/>
+                                    <path d="M10 6C10 5.72386 9.77614 5.5 9.5 5.5C9.22386 5.5 9 5.72386 9 6V12C9 12.2761 9.22386 12.5 9.5 12.5C9.77614 12.5 10 12.2761 10 12V6Z"
+                                          fill="black"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M13.5 3C13.5 3.55228 13.0523 4 12.5 4H12V13C12 14.1046 11.1046 15 10 15H4C2.89543 15 2 14.1046 2 13V4H1.5C0.947715 4 0.5 3.55228 0.5 3V2C0.5 1.44772 0.947715 1 1.5 1H5C5 0.447715 5.44772 0 6 0H8C8.55229 0 9 0.447715 9 1H12.5C13.0523 1 13.5 1.44772 13.5 2V3ZM3.11803 4L3 4.05902V13C3 13.5523 3.44772 14 4 14H10C10.5523 14 11 13.5523 11 13V4.05902L10.882 4H3.11803ZM1.5 3V2H12.5V3H1.5Z"
+                                          fill="black"/>
+                                </svg>
+                            </a>
+                            <a href="update.html">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.1465 0.146447C12.3417 -0.0488155 12.6583 -0.0488155 12.8536 0.146447L15.8536 3.14645C16.0488 3.34171 16.0488 3.65829 15.8536 3.85355L5.85357 13.8536C5.80569 13.9014 5.74858 13.9391 5.68571 13.9642L0.68571 15.9642C0.500001 16.0385 0.287892 15.995 0.146461 15.8536C0.00502989 15.7121 -0.0385071 15.5 0.0357762 15.3143L2.03578 10.3143C2.06092 10.2514 2.09858 10.1943 2.14646 10.1464L12.1465 0.146447ZM11.2071 2.5L13.5 4.79289L14.7929 3.5L12.5 1.20711L11.2071 2.5ZM12.7929 5.5L10.5 3.20711L4.00001 9.70711V10H4.50001C4.77616 10 5.00001 10.2239 5.00001 10.5V11H5.50001C5.77616 11 6.00001 11.2239 6.00001 11.5V12H6.29291L12.7929 5.5ZM3.03167 10.6755L2.92614 10.781L1.39754 14.6025L5.21903 13.0739L5.32456 12.9683C5.13496 12.8973 5.00001 12.7144 5.00001 12.5V12H4.50001C4.22387 12 4.00001 11.7761 4.00001 11.5V11H3.50001C3.28561 11 3.10272 10.865 3.03167 10.6755Z"
+                                          fill="black"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td class="text-danger">расход</td>
+                    <td>жильё</td>
+                    <td>2 500$</td>
+                    <td>12.09.2022</td>
+                    <td></td>
+                    <td class="px-0">
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a href="#" data-bs-target="#modal" data-bs-toggle="modal">
+                                <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.5 5.5C4.77614 5.5 5 5.72386 5 6V12C5 12.2761 4.77614 12.5 4.5 12.5C4.22386 12.5 4 12.2761 4 12V6C4 5.72386 4.22386 5.5 4.5 5.5Z"
+                                          fill="black"/>
+                                    <path d="M7 5.5C7.27614 5.5 7.5 5.72386 7.5 6V12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12V6C6.5 5.72386 6.72386 5.5 7 5.5Z"
+                                          fill="black"/>
+                                    <path d="M10 6C10 5.72386 9.77614 5.5 9.5 5.5C9.22386 5.5 9 5.72386 9 6V12C9 12.2761 9.22386 12.5 9.5 12.5C9.77614 12.5 10 12.2761 10 12V6Z"
+                                          fill="black"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M13.5 3C13.5 3.55228 13.0523 4 12.5 4H12V13C12 14.1046 11.1046 15 10 15H4C2.89543 15 2 14.1046 2 13V4H1.5C0.947715 4 0.5 3.55228 0.5 3V2C0.5 1.44772 0.947715 1 1.5 1H5C5 0.447715 5.44772 0 6 0H8C8.55229 0 9 0.447715 9 1H12.5C13.0523 1 13.5 1.44772 13.5 2V3ZM3.11803 4L3 4.05902V13C3 13.5523 3.44772 14 4 14H10C10.5523 14 11 13.5523 11 13V4.05902L10.882 4H3.11803ZM1.5 3V2H12.5V3H1.5Z"
+                                          fill="black"/>
+                                </svg>
+                            </a>
+                            <a href="update.html">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.1465 0.146447C12.3417 -0.0488155 12.6583 -0.0488155 12.8536 0.146447L15.8536 3.14645C16.0488 3.34171 16.0488 3.65829 15.8536 3.85355L5.85357 13.8536C5.80569 13.9014 5.74858 13.9391 5.68571 13.9642L0.68571 15.9642C0.500001 16.0385 0.287892 15.995 0.146461 15.8536C0.00502989 15.7121 -0.0385071 15.5 0.0357762 15.3143L2.03578 10.3143C2.06092 10.2514 2.09858 10.1943 2.14646 10.1464L12.1465 0.146447ZM11.2071 2.5L13.5 4.79289L14.7929 3.5L12.5 1.20711L11.2071 2.5ZM12.7929 5.5L10.5 3.20711L4.00001 9.70711V10H4.50001C4.77616 10 5.00001 10.2239 5.00001 10.5V11H5.50001C5.77616 11 6.00001 11.2239 6.00001 11.5V12H6.29291L12.7929 5.5ZM3.03167 10.6755L2.92614 10.781L1.39754 14.6025L5.21903 13.0739L5.32456 12.9683C5.13496 12.8973 5.00001 12.7144 5.00001 12.5V12H4.50001C4.22387 12 4.00001 11.7761 4.00001 11.5V11H3.50001C3.28561 11 3.10272 10.865 3.03167 10.6755Z"
+                                          fill="black"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
     <div class="modal position-fixed bg-opacity-50 bg-black" tabindex="-1" role="dialog"
          id="modal">
@@ -214,13 +239,13 @@
                         <button type="button" class="btn btn-lg btn-danger" data-bs-dismiss="modal">Не удалять</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 <script src="libraries/jquery.min.js"></script>
-<script src="libraries/popper.min.js"></script><script src="libraries/bootstrap.min.js"></script>
+<script src="libraries/popper.min.js"></script>
+<script src="libraries/bootstrap.min.js"></script>
 </body>
 </html>

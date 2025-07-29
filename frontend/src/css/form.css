@@ -13,21 +13,21 @@ html, body {
     height: 100%;
 }
 
-.login {
+.form_container {
     max-width: 397px;
     font-family: Roboto, sans-serif;
     font-size: 12px;
 }
 
-.login .logo {
+.form_container .logo {
     margin-bottom: 60px;
 }
 
-.login h3 {
+.form_container h3 {
     font-family: Roboto_Medium, sans-serif;
 }
 
-.login .input-group-text {
+.form_container .input-group-text {
     width: 38px;
     background-color: #e9ecef;
     display: flex;
@@ -36,16 +36,23 @@ html, body {
     padding: 0;
 }
 
-.login .input-group-text {
+.form_container .input-group-text {
     width: 38px;
     padding: 12px;
 }
 
-.login input::placeholder {
+.form_container input::placeholder {
     font-size: 15px;
 }
 
-.login .form-check-input {
+.form_container .form_container-check-input {
     width: 13px;
     height: 13px;
+}
+
+@media screen and (max-width: 767px) {
+    .form_container .logo {
+        margin-bottom: 30px;
+    }
+
 }

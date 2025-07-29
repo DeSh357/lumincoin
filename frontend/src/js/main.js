@@ -24,6 +24,7 @@ const data = {
         }],
     },
     options: {
+        responsive: true,
         plugins: {
             title: {
                 display: true,
@@ -38,10 +39,11 @@ const data = {
             legend: {
                 position: 'top',
                 padding: {bottom: 30},
+                fullSize: true,
             },
         },
         layout: {
-            padding: 50
+            // padding: 50
         }
     },
     plugins: [
