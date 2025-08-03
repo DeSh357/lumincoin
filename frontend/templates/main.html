@@ -1,0 +1,43 @@
+<div class="main w-100">
+    <h1 class="text-primary-emphasis">Главная</h1>
+    <ul class="nav nav-pills justify-content-center justify-content-lg-start align-items-center">
+        <li class="nav-item "><a href="#"
+                                 class="nav-link text-center active bg-secondary" aria-current="page">Сегодня</a>
+        </li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link border text-center border-secondary text-secondary">Неделя</a>
+        </li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link border text-center border-secondary text-secondary">Месяц</a>
+        </li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link border text-center border-secondary text-secondary">Год</a>
+        </li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link pe-0 ps-0 border text-center border-secondary text-secondary">Все</a>
+        </li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link border text-center border-secondary text-secondary">Интервал</a>
+        </li>
+        <li class="d-flex gap-1 gap-md-3">
+            с
+            <input class="border-0 text-decoration-underline text-secondary" type="date" style="width: 52px" value=""
+                   placeholder="Дата">
+            по
+            <input class="border-0 text-decoration-underline text-secondary" type="text" style="width: 52px" value=""
+                   placeholder="Дата">
+        </li>
+
+    </ul>
+
+    <div class="charts overflow-hidden d-flex align-items-center flex-column flex-xl-row justify-content-between gap-5 gap-lg-0row">
+        <div class="chart col-10 col-md-8 col-xl-5">
+            <canvas id="chart1"></canvas>
+        </div>
+        <div class="vr d-none d-xl-block"></div>
+        <div class="chart col-10 col-md-8 col-xl-5">
+            <canvas id="chart2"></canvas>
+        </div>
+    </div>
+</div>
+
