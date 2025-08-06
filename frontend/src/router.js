@@ -3,6 +3,7 @@ import {Main} from "./components/main";
 import {Signup} from "./components/signup";
 import {Login} from "./components/login";
 import {AuthUtils} from "./utils/auth-utils";
+import {AuthService} from "./services/auth-service";
 
 export class Router {
     constructor() {
@@ -23,6 +24,7 @@ export class Router {
                     'chart.umd.min.js',
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                     new Main();
                 }
@@ -31,7 +33,7 @@ export class Router {
                 route: '#/signup',
                 title: 'Регистрация',
                 template: 'templates/signup.html',
-                onlyNoAuth: true,
+                useAuth: false,
                 styles: [
                     'form.css',
                 ],
@@ -43,7 +45,7 @@ export class Router {
                 route: '#/login',
                 title: 'Вход в систему',
                 template: 'templates/login.html',
-                noAuth: true,
+                useAuth: false,
                 styles: [
                     'form.css'
                 ],
@@ -60,6 +62,7 @@ export class Router {
                     'modal.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -71,6 +74,7 @@ export class Router {
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -82,6 +86,7 @@ export class Router {
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -94,6 +99,7 @@ export class Router {
                     'modal.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -105,6 +111,7 @@ export class Router {
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -116,6 +123,7 @@ export class Router {
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -128,6 +136,7 @@ export class Router {
                     'modal.css'
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -139,6 +148,7 @@ export class Router {
                     'create_update.css',
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -150,6 +160,7 @@ export class Router {
                     'create_update.css',
                 ],
                 useLayout: 'templates/layout.html',
+                useAuth: true,
                 load: () => {
                 }
             },
@@ -165,8 +176,12 @@ export class Router {
 
     async openRoute() {
         const urlRoute = window.location.hash.split('?')[0];
+        const info = AuthUtils.getAuthInfo();
         if (urlRoute === '#/logout') {
-            // await Auth.logout();
+            await AuthService.logOut({
+                refreshToken: info.refreshToken
+            });
+            AuthUtils.removeAuthInfo();
             window.location.href = '#/login';
             return;
         }
@@ -180,17 +195,8 @@ export class Router {
             return;
         }
 
-        if (!newRote.hasOwnProperty('noAuth')) {
-            const info = AuthUtils.getAuthInfo();
+        if (newRote.useAuth) {
             if (!info.accessToken || !info.refreshToken || !info.userInfo) {
-                window.location.href = '#/login';
-                return;
-            }
-        }
-
-        if (newRote.hasOwnProperty('onlyNoAuth')) {
-            const info = AuthUtils.getAuthInfo();
-            if (info.accessToken || info.refreshToken || info.userInfo) {
                 window.location.href = '#/login';
                 return;
             }
@@ -205,6 +211,7 @@ export class Router {
             this.contentElement.insertAdjacentHTML("afterbegin", (await fetch(newRote.useLayout).then(response => response.text())));
             FileUtils.loadPageStyle('/styles/sidebar.css');
             hasLayout = true;
+            document.getElementById('userName').innerText = info.userInfo.name + ' ' + info.userInfo.lastName;
         } else if (hasLayout && !newRote.useLayout) {
             hasLayout.remove();
             this.contentElement.classList.remove('page');

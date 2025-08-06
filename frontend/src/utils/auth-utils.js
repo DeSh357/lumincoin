@@ -21,12 +21,15 @@ export class AuthUtils {
 
     static getAuthInfo(key = null) {
         if (key && [this.accessTokenKey, this.refreshTokenKey, this.userInfoKey].includes(key)) {
+            if (key === this.userInfoKey) {
+                return JSON.parse(localStorage.getItem(this.userInfoKey));
+            }
             return localStorage.getItem(key);
         } else {
             return {
                 [this.accessTokenKey]: localStorage.getItem(this.accessTokenKey),
                 [this.refreshTokenKey]: localStorage.getItem(this.refreshTokenKey),
-                [this.userInfoKey]: localStorage.getItem(this.userInfoKey),
+                [this.userInfoKey]: JSON.parse(localStorage.getItem(this.userInfoKey)),
             }
         }
     }
