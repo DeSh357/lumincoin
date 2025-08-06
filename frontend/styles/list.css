@@ -1,0 +1,47 @@
+.list {
+    padding: 100px 65px 60px 60px;
+    font-family: Roboto_Medium, sans-serif;
+}
+
+.list h1 {
+    margin-bottom: 40px;
+}
+
+.list .card {
+    min-height: 121px;
+}
+
+.list .card h3 {
+    color: #290661;
+}
+
+.list .card a svg {
+    fill: #ced4da
+}
+
+.list .card a:hover svg {
+    fill: #adb5bd
+}
+
+@media screen and (max-width: 1024px) {
+    .list {
+        padding: 60px 40px 60px 40px;
+    }
+
+    .list .card {
+        height: 110px;
+    }
+
+    .list .card-actions {
+        .btn {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .list {
+        padding: 40px 20px;
+    }
+}

@@ -1,0 +1,72 @@
+body {
+    font-family: Roboto_Medium, sans-serif;
+    min-height: 100%;
+}
+
+.main {
+    padding: 100px 94px 133px 60px;
+}
+
+.main h1 {
+    margin-bottom: 60px;
+}
+
+.main .nav-pills {
+    gap: 20px;
+    margin-bottom: 140px;
+}
+
+.main .nav-pills .nav-link {
+    width: 100px;
+}
+
+.main .nav-pills li input {
+    outline: none;
+    position: relative;
+    text-decoration-skip-ink: none;
+}
+
+.main .charts .chart {
+    /*padding: 50px;*/
+    /*max-height: 467px;*/
+    /*width: 500px;*/
+}
+
+.main .charts .vr {
+    position: relative;
+    top: 50px;
+    padding: 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .main .nav-pills {
+        margin-bottom: 50px;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .main {
+        padding: 60px 40px 60px 40px;
+    }
+
+    .main h1 {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .main {
+        padding: 40px 20px;
+    }
+
+    .main .nav-pills .nav-link {
+        width: 70px;
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .main .nav-pills li {
+        font-size: 12px;
+    }
+}

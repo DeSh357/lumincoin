@@ -1,0 +1,73 @@
+body {
+    font-family: Roboto_Medium, sans-serif;
+    min-height: 100%;
+}
+
+.page {
+    height: 100%;
+}
+
+.main {
+    padding: 100px 60px 60px 60px;
+    gap: 40px;
+}
+
+
+.main .nav-pills {
+    gap: 20px;
+}
+
+
+.main .nav-pills .nav-link {
+    width: 100px;
+}
+
+.main .nav-pills li input {
+    outline: none;
+    position: relative;
+    text-decoration-skip-ink: none;
+}
+
+.main table td {
+    font-family: Roboto, sans-serif;
+    font-weight: unset;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .main .nav-pills {
+        gap: 10px;
+    }
+
+}
+
+@media screen and (max-width: 1024px){
+    .main {
+        padding: 60px 40px 60px 40px;
+        gap: 20px;
+    }
+
+    .main .table {
+        font-size: 12px;
+    }
+
+    .main .actions .btn {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .main {
+        padding: 40px 20px;
+    }
+
+    .main .nav-pills .nav-link {
+        width: 70px;
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .main .nav-pills li {
+        font-size: 12px;
+    }
+}
