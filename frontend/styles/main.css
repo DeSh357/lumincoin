@@ -26,6 +26,14 @@ body {
     text-decoration-skip-ink: none;
 }
 
+.main .charts.disabled {
+    display: none;
+}
+
+.main .charts.disabled .vr {
+    display: none;
+}
+
 .main .charts .chart {
     /*padding: 50px;*/
     /*max-height: 467px;*/
@@ -42,6 +50,10 @@ body {
     .main .nav-pills {
         margin-bottom: 50px;
         gap: 10px;
+    }
+
+    .main .vr {
+        display: none;
     }
 }
 
