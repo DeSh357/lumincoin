@@ -9,6 +9,7 @@
 
 .list .card {
     min-height: 121px;
+    height: 100%;
 }
 
 .list .card h3 {
@@ -29,7 +30,7 @@
     }
 
     .list .card {
-        height: 110px;
+        min-height: 110px;
     }
 
     .list .card-actions {

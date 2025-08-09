@@ -4,6 +4,11 @@ import {Signup} from "./components/signup";
 import {Login} from "./components/login";
 import {AuthUtils} from "./utils/auth-utils";
 import {AuthService} from "./services/auth-service";
+import {List} from "./components/list";
+import {CategoryUpdate} from "./components/category-update";
+import {CategoryCreate} from "./components/category-create";
+import {Operations} from "./components/operations";
+import {OperationsCreate} from "./components/operations-create";
 
 export class Router {
     constructor() {
@@ -54,9 +59,9 @@ export class Router {
                 }
             },
             {
-                route: '#/expenses',
+                route: '#/expense',
                 title: 'Расходы',
-                template: 'templates/expenses.html',
+                template: 'templates/list.html',
                 styles: [
                     'list.css',
                     'modal.css'
@@ -64,36 +69,39 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new List('expense');
                 }
             },
             {
-                route: '#/expenses/create',
+                route: '#/expense/create',
                 title: 'Создание категории расходов',
-                template: 'templates/createExpenseCategory.html',
+                template: 'templates/categoryCreate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryCreate('expense');
                 }
             },
             {
-                route: '#/expenses/update',
+                route: '#/expense/update',
                 title: 'Редактирование категории расходов',
-                template: 'templates/updateExpenseCategory.html',
+                template: 'templates/categoryUpdate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryUpdate('expense');
                 }
             },
             {
-                route: '#/incomes',
+                route: '#/income',
                 title: 'Доходы',
-                template: 'templates/incomes.html',
+                template: 'templates/list.html',
                 styles: [
                     'list.css',
                     'modal.css'
@@ -101,30 +109,33 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new List('income');
                 }
             },
             {
-                route: '#/incomes/create',
+                route: '#/income/create',
                 title: 'Создание категории доходов',
-                template: 'templates/createIncomeCategory.html',
+                template: 'templates/categoryCreate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryCreate('income');
                 }
             },
             {
-                route: '#/incomes/update',
+                route: '#/income/update',
                 title: 'Редактирование категории доходов',
-                template: 'templates/updateIncomeCategory.html',
+                template: 'templates/categoryUpdate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryUpdate('income');
                 }
             },
             {
@@ -138,6 +149,7 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new Operations();
                 }
             },
             {
@@ -150,6 +162,7 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new OperationsCreate();
                 }
             },
             {
@@ -187,7 +200,11 @@ export class Router {
         }
 
         const newRote = this.routes.find(item => {
-            return item.route === urlRoute;
+            if (['#/', '#/expense', '#/income', '#/operations'].includes(item.route)) {
+                return item.route === urlRoute;
+            } else {
+                return urlRoute.startsWith(item.route);
+            }
         });
 
         if (!newRote) {

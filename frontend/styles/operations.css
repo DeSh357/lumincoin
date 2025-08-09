@@ -26,6 +26,7 @@ body {
     outline: none;
     position: relative;
     text-decoration-skip-ink: none;
+    width: 105px;
 }
 
 .main table td {
@@ -69,5 +70,9 @@ body {
 
     .main .nav-pills li {
         font-size: 12px;
+    }
+
+    .main .nav-pills li input {
+        width: 85px;
     }
 }
