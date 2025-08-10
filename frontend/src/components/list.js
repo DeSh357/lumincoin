@@ -5,14 +5,17 @@ export class List {
         this.page = page;
         this.titlePageElement = document.getElementById("category-title");
         this.rowElement = document.getElementById("categories");
+        this.modalTypeOperationElement = document.getElementById("modal-type-operation");
         this.init().then();
     }
 
     async init() {
         if (this.page === 'expense') {
             this.titlePageElement.innerText = 'Расходы';
+            this.modalTypeOperationElement.innerText = 'расходы';
         } else if (this.page === 'income') {
             this.titlePageElement.innerText = 'Доходы';
+            this.modalTypeOperationElement.innerText = 'доходы';
         } else {
             window.location.href = '#/'
         }
