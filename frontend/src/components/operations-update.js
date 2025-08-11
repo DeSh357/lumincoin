@@ -10,7 +10,7 @@ export class OperationsUpdate {
         this.amountInputElement = document.getElementById('amount');
         this.dateInputElement = document.getElementById('date');
         this.commentInputElement = document.getElementById('comment');
-        this.formControlElements = document.getElementsByClassName('form-control');
+        this.formControlElements = document.getElementsByClassName('operations-inputs');
         this.actionButtonElement = document.getElementById('actionButton');
         this.cancelButtonElement = document.getElementById('cancelButton');
         this.isSelectValid = false;
