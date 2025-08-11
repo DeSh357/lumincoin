@@ -10,6 +10,9 @@ import {CategoryCreate} from "./components/category-create";
 import {Operations} from "./components/operations";
 import {OperationsCreate} from "./components/operations-create";
 import {OperationsUpdate} from "./components/operations-update";
+import {BalanceUtils} from "./utils/balance-utils";
+import {BalanceService} from "./services/balance-service";
+import {Layout} from "./components/layout";
 
 export class Router {
     constructor() {
@@ -228,14 +231,19 @@ export class Router {
             this.contentElement.classList.add('flex-md-row');
             this.contentElement.classList.add('flex-column');
             this.contentElement.insertAdjacentHTML("afterbegin", (await fetch(newRote.useLayout).then(response => response.text())));
+            this.templateWrapperElement.insertAdjacentHTML("afterend", (await fetch('templates/layoutModal.html').then(response => response.text())));
             FileUtils.loadPageStyle('/styles/sidebar.css');
             hasLayout = true;
             document.getElementById('userName').innerText = info.userInfo.name + ' ' + info.userInfo.lastName;
+            const balance = await BalanceService.getBalance();
+            BalanceUtils.showBalance(balance);
+            new Layout();
         } else if (hasLayout && !newRote.useLayout) {
             hasLayout.remove();
             this.contentElement.classList.remove('page');
             this.contentElement.classList.remove('flex-md-row');
             this.contentElement.classList.remove('flex-column');
+            document.getElementById('modalLayout').remove();
             document.getElementById('sidebar-styles').remove();
             hasLayout = false;
         }

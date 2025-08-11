@@ -1,5 +1,7 @@
 import {OperationsService} from "../services/operations-service";
 import {CategoriesService} from "../services/categories-service";
+import {BalanceService} from "../services/balance-service";
+import {BalanceUtils} from "../utils/balance-utils";
 
 export class Operations {
     constructor() {
@@ -152,7 +154,8 @@ export class Operations {
 
                 categoryIdToDelete = null;
                 this.showOperations().then();
-
+                const newBalance = await BalanceService.getBalance();
+                BalanceUtils.showBalance(newBalance);
             } else {
                 alert('Не удалось удалить категорию. Пожалуйста, обратитесь в поддержку');
             }
