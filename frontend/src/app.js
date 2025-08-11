@@ -12,7 +12,6 @@ class App {
 
     async handleRouteChanging() {
         await this.router.openRoute();
-        BalanceUtils.showBalance(await BalanceService.getBalance());
     }
 }
 

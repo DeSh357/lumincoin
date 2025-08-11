@@ -249,6 +249,7 @@ export class Router {
         }
         if (hasLayout) {
             this.activateMenuItem(newRote);
+            BalanceUtils.showBalance(await BalanceService.getBalance());
         }
 
         this.templateWrapperElement.innerHTML = "";
