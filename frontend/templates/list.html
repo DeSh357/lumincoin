@@ -1,0 +1,22 @@
+<div class="list w-100">
+    <h1 class="text-primary-emphasis" id="category-title"></h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3" id="categories">
+    </div>
+</div>
+
+<div class="modal position-fixed bg-opacity-50 bg-black" tabindex="-1" role="dialog"
+     id="modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить категорию? Связанные <span id="modal-type-operation"></span> останутся без категории.
+                </p>
+                <div class="modal-actions d-flex justify-content-center gap-3">
+                    <button type="button" class="btn btn-lg btn-success" id="confirmDeleteBtn">Да, удалить</button>
+                    <button type="button" class="btn btn-lg btn-danger" data-bs-dismiss="modal">Не удалять</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

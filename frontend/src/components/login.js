@@ -20,6 +20,7 @@ export class Login {
     findElements() {
         this.emailElement = document.getElementById("email");
         this.passwordElement = document.getElementById("password");
+        this.checkElement = document.getElementById("check");
     }
 
     async logIn() {
@@ -27,6 +28,7 @@ export class Login {
             const loginResult = await AuthService.logIn({
                 email: this.emailElement.value,
                 password: this.passwordElement.value,
+                rememberMe: this.checkElement.checked,
             });
             if (loginResult) {
                 AuthUtils.setAuthInfo(loginResult.tokens.accessToken, loginResult.tokens.refreshToken, {

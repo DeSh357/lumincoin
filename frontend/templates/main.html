@@ -1,40 +1,41 @@
 <div class="main w-100">
     <h1 class="text-primary-emphasis">Главная</h1>
-    <ul class="nav nav-pills justify-content-center justify-content-lg-start align-items-center">
+    <ul class="nav nav-pills align-items-center">
         <li class="nav-item "><a href="#"
-                                 class="nav-link text-center active bg-secondary" aria-current="page">Сегодня</a>
+                                 class="nav-link text-center active bg-secondary filter-link" aria-current="page" data-filter="today">Сегодня</a>
         </li>
         <li class="nav-item"><a href="#"
-                                class="nav-link border text-center border-secondary text-secondary">Неделя</a>
+                                class="nav-link border text-center border-secondary text-secondary filter-link" data-filter="week">Неделя</a>
         </li>
         <li class="nav-item"><a href="#"
-                                class="nav-link border text-center border-secondary text-secondary">Месяц</a>
+                                class="nav-link border text-center border-secondary text-secondary filter-link" data-filter="month">Месяц</a>
         </li>
         <li class="nav-item"><a href="#"
-                                class="nav-link border text-center border-secondary text-secondary">Год</a>
+                                class="nav-link border text-center border-secondary text-secondary filter-link" data-filter="year">Год</a>
         </li>
         <li class="nav-item"><a href="#"
-                                class="nav-link pe-0 ps-0 border text-center border-secondary text-secondary">Все</a>
+                                class="nav-link pe-0 ps-0 border text-center border-secondary text-secondary filter-link" data-filter="all">Все</a>
         </li>
         <li class="nav-item"><a href="#"
-                                class="nav-link border text-center border-secondary text-secondary">Интервал</a>
+                                class="nav-link border text-center border-secondary text-secondary filter-link" id="interval-filter" data-filter="interval">Интервал</a>
         </li>
         <li class="d-flex gap-1 gap-md-3">
             с
-            <input class="border-0 text-decoration-underline text-secondary" type="date" style="width: 52px" value=""
-                   placeholder="Дата">
+            <input class="border-0 text-decoration-underline text-secondary me-2" type="date"
+                   value="" placeholder="Дата">
             по
-            <input class="border-0 text-decoration-underline text-secondary" type="text" style="width: 52px" value=""
-                   placeholder="Дата">
+            <input class="border-0 text-decoration-underline text-secondary" type="date"
+                   value="" placeholder="Дата">
         </li>
 
     </ul>
+    <div class="text-center d-none text-secondary" id="no-content-message">За данный промежуток пока нет операций</div>
 
-    <div class="charts overflow-hidden d-flex align-items-center flex-column flex-xl-row justify-content-between gap-5 gap-lg-0row">
+    <div class="charts overflow-hidden d-flex align-items-center flex-column flex-xl-row justify-content-between gap-5 gap-lg-0row" id="charts">
         <div class="chart col-10 col-md-8 col-xl-5">
             <canvas id="chart1"></canvas>
         </div>
-        <div class="vr d-none d-xl-block"></div>
+        <div class="vr"></div>
         <div class="chart col-10 col-md-8 col-xl-5">
             <canvas id="chart2"></canvas>
         </div>

@@ -80,6 +80,7 @@
 
 .sidebar .balance {
     font-family: Roboto_Medium, sans-serif;
+    cursor: pointer;
 }
 
 .sidebar .profile {

@@ -4,6 +4,15 @@ import {Signup} from "./components/signup";
 import {Login} from "./components/login";
 import {AuthUtils} from "./utils/auth-utils";
 import {AuthService} from "./services/auth-service";
+import {List} from "./components/list";
+import {CategoryUpdate} from "./components/category-update";
+import {CategoryCreate} from "./components/category-create";
+import {Operations} from "./components/operations";
+import {OperationsCreate} from "./components/operations-create";
+import {OperationsUpdate} from "./components/operations-update";
+import {BalanceUtils} from "./utils/balance-utils";
+import {BalanceService} from "./services/balance-service";
+import {Layout} from "./components/layout";
 
 export class Router {
     constructor() {
@@ -54,9 +63,9 @@ export class Router {
                 }
             },
             {
-                route: '#/expenses',
+                route: '#/expense',
                 title: 'Расходы',
-                template: 'templates/expenses.html',
+                template: 'templates/list.html',
                 styles: [
                     'list.css',
                     'modal.css'
@@ -64,36 +73,39 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new List('expense');
                 }
             },
             {
-                route: '#/expenses/create',
+                route: '#/expense/create',
                 title: 'Создание категории расходов',
-                template: 'templates/createExpenseCategory.html',
+                template: 'templates/categoryCreate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryCreate('expense');
                 }
             },
             {
-                route: '#/expenses/update',
+                route: '#/expense/update',
                 title: 'Редактирование категории расходов',
-                template: 'templates/updateExpenseCategory.html',
+                template: 'templates/categoryUpdate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryUpdate('expense');
                 }
             },
             {
-                route: '#/incomes',
+                route: '#/income',
                 title: 'Доходы',
-                template: 'templates/incomes.html',
+                template: 'templates/list.html',
                 styles: [
                     'list.css',
                     'modal.css'
@@ -101,30 +113,33 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new List('income');
                 }
             },
             {
-                route: '#/incomes/create',
+                route: '#/income/create',
                 title: 'Создание категории доходов',
-                template: 'templates/createIncomeCategory.html',
+                template: 'templates/categoryCreate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryCreate('income');
                 }
             },
             {
-                route: '#/incomes/update',
+                route: '#/income/update',
                 title: 'Редактирование категории доходов',
-                template: 'templates/updateIncomeCategory.html',
+                template: 'templates/categoryUpdate.html',
                 styles: [
                     'create_update.css'
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new CategoryUpdate('income');
                 }
             },
             {
@@ -138,30 +153,33 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new Operations();
                 }
             },
             {
                 route: '#/operations/create',
                 title: 'Создание дохода/расхода',
-                template: 'templates/create.html',
+                template: 'templates/operationsActions.html',
                 styles: [
                     'create_update.css',
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new OperationsCreate();
                 }
             },
             {
                 route: '#/operations/update',
                 title: 'Редактирование дохода/расхода',
-                template: 'templates/update.html',
+                template: 'templates/operationsActions.html',
                 styles: [
                     'create_update.css',
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
                 load: () => {
+                    new OperationsUpdate();
                 }
             },
         ]
@@ -187,7 +205,11 @@ export class Router {
         }
 
         const newRote = this.routes.find(item => {
-            return item.route === urlRoute;
+            if (['#/', '#/expense', '#/income', '#/operations'].includes(item.route)) {
+                return item.route === urlRoute;
+            } else {
+                return urlRoute.startsWith(item.route);
+            }
         });
 
         if (!newRote) {
@@ -209,19 +231,25 @@ export class Router {
             this.contentElement.classList.add('flex-md-row');
             this.contentElement.classList.add('flex-column');
             this.contentElement.insertAdjacentHTML("afterbegin", (await fetch(newRote.useLayout).then(response => response.text())));
+            this.templateWrapperElement.insertAdjacentHTML("afterend", (await fetch('templates/layoutModal.html').then(response => response.text())));
             FileUtils.loadPageStyle('/styles/sidebar.css');
             hasLayout = true;
             document.getElementById('userName').innerText = info.userInfo.name + ' ' + info.userInfo.lastName;
+            const balance = await BalanceService.getBalance();
+            BalanceUtils.showBalance(balance);
+            new Layout();
         } else if (hasLayout && !newRote.useLayout) {
             hasLayout.remove();
             this.contentElement.classList.remove('page');
             this.contentElement.classList.remove('flex-md-row');
             this.contentElement.classList.remove('flex-column');
+            document.getElementById('modalLayout').remove();
             document.getElementById('sidebar-styles').remove();
             hasLayout = false;
         }
         if (hasLayout) {
             this.activateMenuItem(newRote);
+            BalanceUtils.showBalance(await BalanceService.getBalance());
         }
 
         this.templateWrapperElement.innerHTML = "";

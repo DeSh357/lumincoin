@@ -1,4 +1,6 @@
 import {Router} from "./router";
+import {BalanceUtils} from "./utils/balance-utils";
+import {BalanceService} from "./services/balance-service";
 
 class App {
     constructor() {
@@ -8,8 +10,8 @@ class App {
 
     }
 
-    handleRouteChanging() {
-        this.router.openRoute().then();
+    async handleRouteChanging() {
+        await this.router.openRoute();
     }
 }
 

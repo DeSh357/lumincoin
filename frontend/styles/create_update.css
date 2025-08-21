@@ -15,8 +15,17 @@
     color: #6c757d;
 }
 
-input[type="date"]::-webkit-datetime-edit {
+.content select {
     color: #6c757d;
+}
+
+input[type="date"] {
+    color: #6c757d;
+}
+
+/* Текст выбранной даты */
+input[type="date"]:valid {
+    color: black;
 }
 
 @media screen and (max-width: 1024px){

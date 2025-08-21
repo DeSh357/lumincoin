@@ -19,3 +19,15 @@
 .modal .modal-dialog {
     max-width: 530px;
 }
+
+@media screen and (max-width: 767px){
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+}
