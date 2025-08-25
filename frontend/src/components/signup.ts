@@ -1,8 +1,17 @@
 import {ValidationUtils} from "../utils/validation-utils";
 import {AuthService} from "../services/auth-service";
 import {AuthUtils} from "../utils/auth-utils";
+import {FieldType} from "../types/field.type";
 
 export class Signup {
+    private emailElement: HTMLInputElement | null = null;
+    private passwordElement: HTMLInputElement | null = null;
+    private nameElement: HTMLInputElement | null = null;
+    private lastNameElement: HTMLInputElement | null = null;
+    private passwordRepeatElement: HTMLInputElement | null = null;
+
+    readonly fields: FieldType[];
+
     constructor() {
         this.findElements();
 
@@ -11,36 +20,44 @@ export class Signup {
             {element: this.lastNameElement, options: {pattern: /^[А-Я][а-я]+\s*$/}},
             {element: this.emailElement, options: {pattern: /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/}},
             {element: this.passwordElement, options: {pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/}},
-            {element: this.passwordRepeatElement, options: {compareTo: this.passwordElement.value}},
+            {element: this.passwordRepeatElement, options: {compareTo: this.passwordElement?.value}},
         ];
 
-        document.getElementById("process").addEventListener("click", this.signUp.bind(this));
+        const processElement = document.getElementById("process");
+        if (processElement) {
+            processElement.addEventListener("click", this.signUp.bind(this));
+        }
 
         this.fields.forEach(field => {
-            field.element.addEventListener("change", () => {
+            field.element?.addEventListener("change", () => {
                 if (field.element === this.passwordRepeatElement) {
-                    field.options.compareTo = this.passwordElement.value;
+                    if (field.options && this.passwordElement) {
+                        field.options.compareTo = this.passwordElement.value;
+                    }
                 }
                 ValidationUtils.validateField(field.element, field.options)
             });
         })
     }
 
-    findElements() {
-        this.nameElement = document.getElementById("name");
-        this.lastNameElement = document.getElementById("lastName");
-        this.emailElement = document.getElementById("email");
-        this.passwordElement = document.getElementById("password");
-        this.passwordRepeatElement = document.getElementById("repeatPassword");
+    private findElements(): void {
+        this.nameElement = document.getElementById("name") as HTMLInputElement;
+        this.lastNameElement = document.getElementById("lastName") as HTMLInputElement;
+        this.emailElement = document.getElementById("email") as HTMLInputElement;
+        this.passwordElement = document.getElementById("password") as HTMLInputElement;
+        this.passwordRepeatElement = document.getElementById("repeatPassword") as HTMLInputElement;
     }
 
-    async signUp() {
+    private async signUp(): Promise<void> {
         this.fields.forEach(field => {
             if (field.element === this.passwordRepeatElement) {
-                field.options.compareTo = this.passwordElement.value;
+                if (field.options && this.passwordElement) {
+                    field.options.compareTo = this.passwordElement.value;
+                }
             }
         })
         if (ValidationUtils.validateForm(this.fields)) {
+            if (!this.nameElement || !this.lastNameElement || !this.emailElement || !this.passwordElement || !this.passwordRepeatElement) return;
             const signupResult = await AuthService.signUp({
                 name: this.nameElement.value,
                 lastName: this.lastNameElement.value,

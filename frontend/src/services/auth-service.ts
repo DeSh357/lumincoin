@@ -1,9 +1,9 @@
 import {HttpUtils} from "../utils/http-utils";
-import {AuthUtils} from "../utils/auth-utils";
+import {RequestResultType} from "../types/request-result.type";
 
 export class AuthService {
-    static async logIn(data) {
-        const result = await HttpUtils.request('/login', 'POST', false, data);
+    static async logIn(data: any) {
+        const result: RequestResultType = await HttpUtils.request('/login', 'POST', false, data);
 
         if (result.error || !result.response || !result.response.tokens || !result.response.user.lastName || !result.response.user.id || !result.response.user.name) {
             return false;
@@ -12,8 +12,8 @@ export class AuthService {
         return result.response;
     }
 
-    static async signUp(data) {
-        const signup = await HttpUtils.request('/signup', 'POST', false, data);
+    static async signUp(data: any) {
+        const signup: RequestResultType = await HttpUtils.request('/signup', 'POST', false, data);
 
         if (signup.error || !signup.response || !signup.response.user.lastName || !signup.response.user.id || !signup.response.user.email) {
             return false;
@@ -31,7 +31,7 @@ export class AuthService {
         return false;
     }
 
-    static async logOut(data) {
+    public static async logOut(data: any): Promise<void> {
         await HttpUtils.request('/logout', 'POST', false, data);
     }
 }
