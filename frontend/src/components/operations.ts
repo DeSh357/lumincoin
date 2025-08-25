@@ -1,9 +1,20 @@
 import {OperationsService} from "../services/operations-service";
-import {CategoriesService} from "../services/categories-service";
 import {BalanceService} from "../services/balance-service";
 import {BalanceUtils} from "../utils/balance-utils";
+import {OperationsResponseType} from "../types/operations-response.type";
+import bootstrap = require("bootstrap");
+import {BalanceType} from "../types/balance.type";
+import {OperationsDeleteResponseType} from "../types/operations-delete-response.type";
 
 export class Operations {
+    private filterButtons: NodeListOf<HTMLElement>;
+    private intervalInputs: NodeListOf<HTMLInputElement>;
+    readonly intervalFilterElement: HTMLElement | null;
+    readonly tableWrapperElement: HTMLElement | null;
+    readonly operationsTableElement: HTMLElement | null;
+    readonly noContentMessageElement: HTMLElement | null;
+    private activeFilter: string | null;
+
     constructor() {
         this.filterButtons = document.querySelectorAll('.filter-link');
         this.intervalInputs = document.querySelectorAll('input[type="date"]');
@@ -22,12 +33,14 @@ export class Operations {
             });
         });
 
-        this.intervalInputs.forEach(input => {
+        this.intervalInputs.forEach((input: HTMLElement) => {
             input.addEventListener('change', () => {
-                const from = this.intervalInputs[0].value;
-                const to = this.intervalInputs[1].value;
+                const from: string = this.intervalInputs[0].value;
+                const to: string = this.intervalInputs[1].value;
                 if (from || to) {
-                    this.activateButton(this.intervalFilterElement);
+                    if (this.intervalFilterElement) {
+                        this.activateButton(this.intervalFilterElement);
+                    }
                 }
 
                 if (from && to) {
@@ -39,10 +52,10 @@ export class Operations {
         this.deleteProcess();
     }
 
-    async filter(button) {
+    private async filter(button: HTMLElement): Promise<void> {
         if (this.activateButton(button)) {
             if (this.activeFilter === 'interval') {
-                 return;
+                return;
             }
 
             this.intervalInputs.forEach(input => input.value = '');
@@ -50,7 +63,7 @@ export class Operations {
         }
     }
 
-    activateButton(button) {
+    private activateButton(button: HTMLElement): boolean {
         if (button.classList.contains('active')) {
             return false;
         }
@@ -65,38 +78,41 @@ export class Operations {
         return true;
     }
 
-    async showOperations(useInterval = false) {
+    private async showOperations(useInterval = false): Promise<void> {
+        if (!this.tableWrapperElement || !this.operationsTableElement) return;
         this.operationsTableElement.innerHTML = '';
         this.tableWrapperElement.style.display = 'none';
 
-        let intervalString = '';
+        let intervalString: string = '';
         if (useInterval) {
-            const dateFrom = this.intervalInputs[0].value;
-            const dateTo = this.intervalInputs[1].value;
+            const dateFrom: string = this.intervalInputs[0].value;
+            const dateTo: string = this.intervalInputs[1].value;
             intervalString = `&dateFrom=${dateFrom}&dateTo=${dateTo}`;
         }
-        const filterString = `?period=${this.activeFilter}${intervalString}`;
-        const operations = await OperationsService.getOperations(filterString);
+        const filterString: string = `?period=${this.activeFilter}${intervalString}`;
+        const operations: OperationsResponseType[] | null = await OperationsService.getOperations(filterString);
 
-        if (operations && operations.length > 0) {
-            this.noContentMessageElement.classList.add('d-none');
-            this.tableWrapperElement.style.display = 'block';
-            operations.sort((a, b) => a.id - b.id);
-            operations.forEach(operation => {
-                this.operationsTableElement.appendChild(this.createTrElement(operation));
-            })
-        } else {
-            this.noContentMessageElement.classList.remove('d-none');
+        if (this.noContentMessageElement) {
+            if (operations && operations.length > 0) {
+                this.noContentMessageElement.classList.add('d-none');
+                this.tableWrapperElement.style.display = 'block';
+                operations.sort((a, b) => a.id - b.id);
+                operations.forEach(operation => {
+                    this.operationsTableElement?.appendChild(this.createTrElement(operation));
+                })
+            } else {
+                this.noContentMessageElement.classList.remove('d-none');
+            }
         }
     }
 
-    createTrElement(operation) {
-        const trElement = document.createElement('tr');
-        const thElement = document.createElement('th');
+    private createTrElement(operation: OperationsResponseType): HTMLTableRowElement {
+        const trElement: HTMLTableRowElement = document.createElement('tr');
+        const thElement: HTMLTableCellElement = document.createElement('th');
         thElement.classList.add('text-center');
         thElement.setAttribute('scope', 'row');
-        thElement.innerText = operation.id;
-        const tdElement1 = document.createElement('td');
+        thElement.innerText = operation.id.toString();
+        const tdElement1: HTMLTableCellElement = document.createElement('td');
         switch (operation.type) {
             case 'income': {
                 tdElement1.innerText = 'доход';
@@ -112,13 +128,13 @@ export class Operations {
                 tdElement1.innerText = '-';
             }
         }
-        const tdElement2 = document.createElement('td');
+        const tdElement2: HTMLTableCellElement = document.createElement('td');
         tdElement2.innerText = operation.category ? operation.category : '-';
-        const tdElement3 = document.createElement('td');
+        const tdElement3: HTMLTableCellElement = document.createElement('td');
         tdElement3.innerText = operation.amount ? operation.amount + '$' : '-';
-        const tdElement4 = document.createElement('td');
+        const tdElement4: HTMLTableCellElement = document.createElement('td');
         tdElement4.innerText = operation.date ? operation.date.replaceAll('-', '.') : '-';
-        const tdElement5 = document.createElement('td');
+        const tdElement5: HTMLTableCellElement = document.createElement('td');
         tdElement5.innerText = operation.comment ? operation.comment : '-';
 
         trElement.appendChild(thElement);
@@ -131,34 +147,51 @@ export class Operations {
         return trElement;
     }
 
-    deleteProcess() {
-        let categoryIdToDelete = null;
+    private deleteProcess(): void {
+        let categoryIdToDelete: number | null = null;
 
-        const modal = document.getElementById('modal');
-        modal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
-            categoryIdToDelete = parseInt(button.getAttribute('data-id'));
+        const modal: HTMLElement | null = document.getElementById('modal');
+        modal?.addEventListener('show.bs.modal', function(event) {
+            const e = event as CustomEvent & { relatedTarget: HTMLElement };
+            const button: HTMLElement = e.relatedTarget;
+            categoryIdToDelete = parseInt(button.getAttribute('data-id')!);
         });
 
-        document.getElementById('confirmDeleteBtn').addEventListener('click', async function () {
-            if (!categoryIdToDelete) return;
-            const categoryCard = document.querySelector(`[data-id="${categoryIdToDelete}"]`).closest('tr');
-            if (categoryCard) categoryCard.remove();
+        const confirmDeleteElement: HTMLElement | null = document.getElementById('confirmDeleteBtn');
+        if (confirmDeleteElement) {
+            const that: Operations = this;
+            confirmDeleteElement.addEventListener('click', async function () {
+                if (!categoryIdToDelete) return;
+                const categoryIdElement: HTMLElement | null =  document.querySelector(`[data-id="${categoryIdToDelete}"]`);
+                let categoryCard: HTMLElement | null = null;
+                if (categoryIdElement) {
+                    categoryCard = categoryIdElement.closest('tr');
+                }
+                if (categoryCard) categoryCard.remove();
 
-            const deleteResult = await OperationsService.deleteOperation(categoryIdToDelete);
+                const deleteResult: OperationsDeleteResponseType | null = await OperationsService.deleteOperation(categoryIdToDelete);
 
-            if (deleteResult) {
-                const modalInstance = bootstrap.Modal.getInstance(modal);
-                document.activeElement.blur();
-                modalInstance.hide();
+                if (deleteResult) {
+                    const modalInstance: bootstrap.Modal | null = bootstrap.Modal.getInstance(modal as Element);
+                    const activeElement: Element | null = document.activeElement;
+                    if (activeElement) {
+                        (activeElement as HTMLElement).blur();
+                    }
+                    if (modalInstance) {
+                        modalInstance.hide();
+                    }
 
-                categoryIdToDelete = null;
-                this.showOperations().then();
-                const newBalance = await BalanceService.getBalance();
-                BalanceUtils.showBalance(newBalance);
-            } else {
-                alert('Не удалось удалить категорию. Пожалуйста, обратитесь в поддержку');
-            }
-        }.bind(this));
+                    categoryIdToDelete = null;
+
+                    that.showOperations().then();
+                    const newBalance: BalanceType | null = await BalanceService.getBalance();
+                    if (newBalance) {
+                        BalanceUtils.showBalance(newBalance);
+                    }
+                } else {
+                    alert('Не удалось удалить категорию. Пожалуйста, обратитесь в поддержку');
+                }
+            }.bind(this));
+        }
     }
 }

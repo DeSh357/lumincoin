@@ -13,8 +13,17 @@ import {OperationsUpdate} from "./components/operations-update";
 import {BalanceUtils} from "./utils/balance-utils";
 import {BalanceService} from "./services/balance-service";
 import {Layout} from "./components/layout";
+import {RouteType} from "./types/route.type";
+import {AuthInfoType} from "./types/auth-info.type";
+import {BalanceType} from "./types/balance.type";
 
 export class Router {
+    readonly contentElement: HTMLElement | null;
+    readonly templateWrapperElement: HTMLElement | null;
+    private metaTag: HTMLElement | null;
+    readonly titleElement: HTMLElement | null;
+    private routes: RouteType[];
+
     constructor() {
         this.contentElement = document.getElementById("content");
         this.templateWrapperElement = document.getElementById("template-wrapper");
@@ -28,9 +37,6 @@ export class Router {
                 template: 'templates/main.html',
                 styles: [
                     'main.css'
-                ],
-                scripts: [
-                    'chart.umd.min.js',
                 ],
                 useLayout: 'templates/layout.html',
                 useAuth: true,
@@ -185,26 +191,31 @@ export class Router {
         ]
     }
 
-    clearOldRoute() {
-        const oldRouteElements = document.getElementsByClassName('created');
+    private clearOldRoute(): void {
+        const oldRouteElements: HTMLCollection | null = document.getElementsByClassName('created');
         for (let i = 0; oldRouteElements.length !== 0;) {
             oldRouteElements[i].remove();
         }
     }
 
-    async openRoute() {
-        const urlRoute = window.location.hash.split('?')[0];
-        const info = AuthUtils.getAuthInfo();
+    public async openRoute(): Promise<void> {
+        if (!this.contentElement || !this.templateWrapperElement) {
+            return;
+        }
+        const urlRoute: string = window.location.hash.split('?')[0];
+        const info: AuthInfoType = AuthUtils.getAuthInfo() as AuthInfoType;
         if (urlRoute === '#/logout') {
-            await AuthService.logOut({
-                refreshToken: info.refreshToken
-            });
+            if (info.refreshToken) {
+                await AuthService.logOut({
+                    refreshToken: info.refreshToken
+                });
+            }
             AuthUtils.removeAuthInfo();
             window.location.href = '#/login';
             return;
         }
 
-        const newRote = this.routes.find(item => {
+        const newRote: RouteType | undefined = this.routes.find(item => {
             if (['#/', '#/expense', '#/income', '#/operations'].includes(item.route)) {
                 return item.route === urlRoute;
             } else {
@@ -218,24 +229,29 @@ export class Router {
         }
 
         if (newRote.useAuth) {
-            if (!info.accessToken || !info.refreshToken || !info.userInfo) {
+            if (!info || !info.accessToken || !info.refreshToken || !info.userInfo || !info.userInfo.name || !info.userInfo.lastName) {
                 window.location.href = '#/login';
                 return;
             }
         }
 
-        let hasLayout = document.getElementById('layout');
-
+        let hasLayout: HTMLElement | null = document.getElementById('layout');
         if (!hasLayout && newRote.useLayout) {
             this.contentElement.classList.add('page');
             this.contentElement.classList.add('flex-md-row');
             this.contentElement.classList.add('flex-column');
             this.contentElement.insertAdjacentHTML("afterbegin", (await fetch(newRote.useLayout).then(response => response.text())));
             this.templateWrapperElement.insertAdjacentHTML("afterend", (await fetch('templates/layoutModal.html').then(response => response.text())));
+
             FileUtils.loadPageStyle('/styles/sidebar.css');
-            hasLayout = true;
-            document.getElementById('userName').innerText = info.userInfo.name + ' ' + info.userInfo.lastName;
-            const balance = await BalanceService.getBalance();
+            hasLayout = document.getElementById('layout');
+            if (info) {
+                const userNameElement: HTMLElement | null = document.getElementById('userName');
+                if (userNameElement) {
+                    userNameElement.innerText = info.userInfo?.name + ' ' + info.userInfo?.lastName;
+                }
+            }
+            const balance: BalanceType = await BalanceService.getBalance() as BalanceType;
             BalanceUtils.showBalance(balance);
             new Layout();
         } else if (hasLayout && !newRote.useLayout) {
@@ -243,17 +259,29 @@ export class Router {
             this.contentElement.classList.remove('page');
             this.contentElement.classList.remove('flex-md-row');
             this.contentElement.classList.remove('flex-column');
-            document.getElementById('modalLayout').remove();
-            document.getElementById('sidebar-styles').remove();
-            hasLayout = false;
+            const modalLayoutElement = document.getElementById('modalLayout');
+            if (modalLayoutElement) {
+                modalLayoutElement.remove();
+            }
+            const sidebarStylesElement = document.getElementById('sidebar-styles');
+            if (sidebarStylesElement) {
+                sidebarStylesElement.remove();
+            }
+            hasLayout = null;
         }
+
         if (hasLayout) {
             this.activateMenuItem(newRote);
-            BalanceUtils.showBalance(await BalanceService.getBalance());
+            const balance = await BalanceService.getBalance();
+            if (balance) {
+                BalanceUtils.showBalance(balance);
+            }
         }
 
         this.templateWrapperElement.innerHTML = "";
-        this.titleElement.innerText = newRote.title;
+        if (this.titleElement) {
+            this.titleElement.innerText = newRote.title;
+        }
 
         this.clearOldRoute();
 
@@ -261,12 +289,6 @@ export class Router {
             newRote.styles.forEach(style => {
                 FileUtils.loadPageStyle('/styles/' + style);
             })
-        }
-
-        if (newRote.scripts && newRote.scripts.length > 0) {
-            for (const script of newRote.scripts) {
-                await FileUtils.loadPageScript('/js/' + script);
-            }
         }
 
         if (newRote.route === '#/login' || newRote.route === '#/signup') {
@@ -281,13 +303,15 @@ export class Router {
         newRote.load();
     }
 
-    activateMenuItem(route) {
+    private activateMenuItem(route: RouteType): void {
         document.querySelectorAll('.sidebar .nav-link').forEach(item => {
-            const href = item.getAttribute('href');
-            if (route.route.startsWith(href) && href !== '#/' || href === '#/' && route.route === href) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
+            const href: string | null = item.getAttribute('href');
+            if (href) {
+                if (route.route.startsWith(href) && href !== '#/' || href === '#/' && route.route === href) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
             }
         })
     }

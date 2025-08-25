@@ -4,7 +4,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/app.ts',
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
@@ -28,7 +28,15 @@ module.exports = {
                     "css-loader"
                 ],
             },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
         ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
         new Dotenv(),
@@ -40,10 +48,6 @@ module.exports = {
                 { from: "./styles", to: "styles" },
                 { from: "./templates", to: "templates" },
                 { from: "./static/fonts", to: "fonts" },
-                { from: "./node_modules/bootstrap/dist/css/bootstrap.min.css", to: "styles" },
-                { from: "./node_modules/jquery/dist/jquery.min.js", to: "js" },
-                { from: "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js", to: "js" },
-                { from: "./node_modules/chart.js/dist/chart.umd.min.js", to: "js" },
                 { from: "./.env", to: "./" },
             ],
         }),

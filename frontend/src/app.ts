@@ -1,8 +1,10 @@
 import {Router} from "./router";
-import {BalanceUtils} from "./utils/balance-utils";
-import {BalanceService} from "./services/balance-service";
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App {
+    private router: Router;
     constructor() {
         this.router = new Router();
         window.addEventListener('DOMContentLoaded', this.handleRouteChanging.bind(this));
@@ -10,7 +12,7 @@ class App {
 
     }
 
-    async handleRouteChanging() {
+    private async handleRouteChanging(): Promise<void> {
         await this.router.openRoute();
     }
 }
